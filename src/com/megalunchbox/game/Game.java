@@ -3,6 +3,8 @@ package com.megalunchbox.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.megalunchbox.game.Input.Menu.Input;
+import com.megalunchbox.game.Menu.Menu;
 import com.megalunchbox.game.State.State;
 
 public class Game extends ApplicationAdapter {
@@ -10,6 +12,7 @@ public class Game extends ApplicationAdapter {
 	@Override
 	public void create () {
         State.setCurrentState(State.States.Menu);
+        Gdx.input.setInputProcessor(new Input());
 	}
 
 	@Override
@@ -39,6 +42,12 @@ public class Game extends ApplicationAdapter {
     }
 
     public void handleInput() {
+
+		if (!(Gdx.input.getInputProcessor() instanceof Input) && State.getCurrentState() == State.States.Menu) {
+			Gdx.input.setInputProcessor(new Input());
+		} else if(!(Gdx.input.getInputProcessor() instanceof com.megalunchbox.game.Input.Game.Input) && State.getCurrentState() == State.States.Game) {
+			Gdx.input.setInputProcessor(new com.megalunchbox.game.Input.Game.Input());
+		}
 
     }
 

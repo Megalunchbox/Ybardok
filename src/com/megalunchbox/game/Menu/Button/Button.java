@@ -13,6 +13,8 @@ abstract class Button {
     float x;
     float y;
 
+    boolean isSelected;
+
     Button(float height, float width, float x, float y) {
         this.height = height;
         this.width = width;
@@ -22,4 +24,14 @@ abstract class Button {
     }
 
     abstract void onClick();
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
+
 }

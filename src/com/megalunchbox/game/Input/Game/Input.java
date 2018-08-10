@@ -1,8 +1,9 @@
-package com.megalunchbox.game.Input;
+package com.megalunchbox.game.Input.Game;
 
 import com.badlogic.gdx.InputProcessor;
 
 public class Input implements InputProcessor{
+
 
     @Override
     public boolean keyDown(int keycode) {

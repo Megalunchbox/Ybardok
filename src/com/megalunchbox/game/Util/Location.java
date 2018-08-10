@@ -1,5 +1,7 @@
 package com.megalunchbox.game.Util;
 
+
+
 public class Location {
 
     int x;
