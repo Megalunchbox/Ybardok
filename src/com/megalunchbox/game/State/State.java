@@ -29,7 +29,7 @@ public class State {
     public enum States {
 
         Menu("Menu", 0),
-        Game("Game", 1);
+        Game("Main", 1);
 
         private String name;
         private int id;

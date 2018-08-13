@@ -2,6 +2,10 @@ package com.megalunchbox.game.Input.Menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.megalunchbox.game.Menu.Button.Button;
+import com.megalunchbox.game.Util.GameMath;
+
+import java.lang.reflect.InvocationTargetException;
 
 public class Input implements InputProcessor{
 
@@ -24,6 +28,20 @@ public class Input implements InputProcessor{
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
         if (button == com.badlogic.gdx.Input.Buttons.LEFT) {
+            for (Button b : Button.getButtons()) {
+                if (GameMath.isWithin(b.getX(), b.getY(), b.getWidth(), b.getHeight(), screenX, screenY)) {
+                    try {
+                        //can we just admire that I did this without it even crossing my mind I could just do b.onClick();
+                        b.getClass().getMethod("execute").invoke(b);
+                    } catch (NoSuchMethodException e) {
+                        System.out.println(e.toString());
+                    } catch (InvocationTargetException e) {
+                        System.out.println(e.toString());
+                    } catch (IllegalAccessException e) {
+                        System.out.println(e.toString());
+                    }
+                }
+            }
 
             return true;
         }
