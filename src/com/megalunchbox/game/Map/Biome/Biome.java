@@ -11,12 +11,14 @@ public class Biome {
 
 
     HashMap<String, Integer> temperatureMap = new HashMap<String, Integer>();
+    TileSet tileSet;
 
-    public Biome(int high, int low, int average) {
+    public Biome(int high, int low, int average, TileSet tileSet) {
 
         temperatureMap.put("high", high);
         temperatureMap.put("low", low);
         temperatureMap.put("average", average);
+        this.tileSet = tileSet;
 
     }
 
