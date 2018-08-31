@@ -42,5 +42,18 @@ public class Map {
     
     public String getMid() {
         return mid;
+    } 
+    
+    public void loadRegion() {
+        
     }
+    
+    public void generateRegion() {
+        
+    }
+    
+    public void unloadRegion() {
+        
+    }
+    
 }
