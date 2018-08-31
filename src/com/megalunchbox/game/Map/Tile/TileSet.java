@@ -8,8 +8,7 @@ public enum TileSet {
 
     ;
 
-    Biome biome;
-    ArrayList<Tile> tileList;
+    ArrayList<TileType> tileList;
 
 
     /**
@@ -18,9 +17,12 @@ public enum TileSet {
      */
 
 
-     TileSet(Biome biome, ArrayList tileList) {
-     this.biome = biome;
+     TileSet(ArrayList tileList) {
      this.tileList = tileList;
+    }
+    
+    public ArrayList<TileType> getTypes() {
+        return tileList;
     }
 
 
