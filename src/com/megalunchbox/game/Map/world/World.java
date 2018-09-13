@@ -28,7 +28,7 @@ public class World implements Serializable {
   //the width of the world
   private int worldHeight;
   
-  private final long serialVersionUUID = 41L;
+  private final long transient serialVersionUUID = 41L;
   
   public void loadRegion(FileHandle fileHandle) {
     
