@@ -9,7 +9,7 @@ public class Region implements Serializable {
   
   //all chunks that are in the region.
   
-  public Arraylist<Chunk> chunks;
+  public ArrayList<Chunk> chunks;
   
   //location of the region
   
@@ -23,10 +23,32 @@ public class Region implements Serializable {
   
   private static final long serialVersionUID 23L;
   
-  public Region createRegion() {
-    //Region generation, using temperatures, world axis.
-    Region region = new Region();
-    return region;
+  public Region(World world, Location location, Arraylist<Chunk> chunks) {
+    this.world = world;
+    this.location = location;
+    
+       if (chunks != null) {
+          this.chunks = chunks;
+       }
+    
+  }
+  
+  //creates a region with no generated chunks
+  public static Region createRegion(Location location, World world) {
+    return new Region(world, location, null);
+  }
+  
+  public static Region loadRegion(FileHandle handle) throws IOException, ClassNotFoundException {
+           try {
+            FileInputStream fis = new FileInputStream(handle);
+            ObjectOutputStream ois = new ObjectOutputStream(fis);
+            region = (Region) ois.readObject();
+            return region;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
   }
   
   public static void saveRegion(Location location) {
@@ -45,8 +67,17 @@ public class Region implements Serializable {
     
   }
   
+  public ArrayList<Chunk> getChunks() {
+    return chunks;
+  }
+  
   public long getSerialVersionUID() {
     return serialVersionUID;
   }
   
+  public static Region generateRegion(Region region) {
+    ArrayList<Chunk> buildingChunks = region.getChunks();
+    //TODO: Chunk generation here for the whole region.
+    return region;
+  }
 }
