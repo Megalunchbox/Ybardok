@@ -1,7 +1,7 @@
-package com.megalunchbox.game.Map.Tile;
+package com.megalunchbox.game.map.tile;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megalunchbox.game.Util.Location;
+import com.megalunchbox.game.util.Location;
 
 public class Tile {
 

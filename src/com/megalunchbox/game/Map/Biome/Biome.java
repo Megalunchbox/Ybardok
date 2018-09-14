@@ -1,4 +1,6 @@
-package com.megalunchbox.game.Map.Biome;
+package com.megalunchbox.game.map.biome;
+
+import com.megalunchbox.game.map.tile.TileSet;
 
 import java.util.HashMap;
 

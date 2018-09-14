@@ -1,4 +1,4 @@
-package com.megalunchbox.game.Util;
+package com.megalunchbox.game.util;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

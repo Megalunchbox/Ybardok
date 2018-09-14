@@ -1,7 +1,8 @@
-package com.megalunchbox.game.Map.Region;
+package com.megalunchbox.game.map.region;
 
 import java.util.ArrayList;
-import com.megalunchbox.game.Map.Biome.Biome;
+import com.megalunchbox.game.map.biome.Biome;
+import com.megalunchbox.game.map.tile.Tile;
 
 public class Chunk {
   
@@ -16,10 +17,10 @@ public class Chunk {
     tiles.add(tile);
   }
   
-  public void removeTile() {
+  public void removeTile(Tile tile) {
     tiles.remove(tile);
   }
-  
+
   public void genChunk(Biome biome) {
     
   }

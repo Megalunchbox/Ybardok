@@ -1,6 +1,4 @@
-package com.megalunchbox.game.Map.Tile;
-
-import com.megalunchbox.game.Map.Biome.Biome;
+package com.megalunchbox.game.map.tile;
 
 import java.util.ArrayList;
 

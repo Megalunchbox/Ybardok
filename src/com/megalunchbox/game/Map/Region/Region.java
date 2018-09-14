@@ -1,13 +1,14 @@
-package com.megalunchbox.game.Map.Region;
+package com.megalunchbox.game.map.region;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
+
+import com.badlogic.gdx.Gdx;
 import com.megalunchbox.game.util.Location;
-import com.megalunchbox.game.Map.World;
-import java.lang.character;
-import java.io.ObjectInputStream;
+import com.megalunchbox.game.map.world.World;
+
 import com.badlogic.gdx.files.FileHandle;
-import java.io.FileInputStream;
+
 import java.lang.Math;
 
 
@@ -27,9 +28,9 @@ public class Region implements Serializable {
   
   //serialversionuid
   
-  private static final long serialVersionUID 23L;
+  private static final long serialVersionUID = 23L;
   
-  protected Region(World world, Location location, Arraylist<Chunk> chunks) {
+  protected Region(World world, Location location, ArrayList<Chunk> chunks) {
     this.world = world;
     this.location = location;
     
@@ -55,33 +56,40 @@ public class Region implements Serializable {
     
     int x = (int) Math.floor(location.getX()/16);
     int y = (int) Math.floor(location.getY()/16);
-      
+
+    FileHandle file;
+
     if (location.getX() > 0 && location.getY() > 0) {
-    FileHandle file = Gdx.files.local(world.getDir() + "\" + "pp" + "\" + (String) characters[x] + (String) characters[y] + "\" + location.getX() + location.getY() + ".rgf");
+      file = Gdx.files.local(world.getDirAsString() + "\\" + "pp" + "\\" +  characters[x] + characters[y] + "\\" + location.getX() + location.getY() + ".rgf");
+      return file;
     } else if (location.getX() <= 0 && location.getY() <= 0) {
-      FileHandle file = Gdx.files.local(world.getDir() + "\" + "mm" + "\" + (String) characters[x] + (String) characters[y] + "\" + location.getX() + location.getY() + ".rgf");
+       file = Gdx.files.local(world.getDirAsString() + "\\" + "mm" + "\\" +  characters[x] + characters[y] + "\\" + location.getX() + location.getY() + ".rgf");
+       return file;
     } else if (location.getX() > 0 && location.getY() <= 0) {
-      FileHandle file = Gdx.files.local(world.getDir() + "\" + "pm" + "\" + (String) characters[x] + (String) characters[y] + "\" + location.getX() + location.getY() + ".rgf");
+       file = Gdx.files.local(world.getDirAsString() + "\\" + "pm" + "\\" +  characters[x] + characters[y] + "\\" + location.getX() + location.getY() + ".rgf");
+       return file;
     } else if (location.getX() <= 0 && location.getY() > 0) {
-      FileHandle file = Gdx.files.local(world.getDir() + "\" + "mp" + "\" + (String) characters[x] + (String) characters[y] + "\" + location.getX() + location.getY() + ".rgf");
+       file = Gdx.files.local(world.getDirAsString() + "\\" + "mp" + "\\" +  characters[x] + characters[y] + "\\" + location.getX() + location.getY() + ".rgf");
+       return file;
     }
-  }
-  
-  public static FileHandle getRegionPathByLocation(Location location) {
-    
+    return null;
   }
 
+
   public static Region loadRegion(FileHandle handle) throws IOException, ClassNotFoundException {
-           try {
-            FileInputStream fis = new FileInputStream(handle);
-            ObjectOutputStream ois = new ObjectOutputStream(fis);
-            region = (Region) ois.readObject();
-            return region;
-        }
-        catch (Exception e)
-        {
+
+      try {
+
+            FileInputStream fis = new FileInputStream(handle.file());
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+          return (Region) ois.readObject();
+
+      } catch (Exception e) {
             e.printStackTrace();
-        }
+      }
+
+      return null;
   }
   
   public static void saveRegion(Location location) {
@@ -113,4 +121,8 @@ public class Region implements Serializable {
     //TODO: Chunk generation here for the whole region.
     return region;
   }
+
+    public Location getLocation() {
+        return location;
+    }
 }

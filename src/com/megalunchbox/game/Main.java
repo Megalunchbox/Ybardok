@@ -5,13 +5,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megalunchbox.game.Game.Render;
-import com.megalunchbox.game.Input.Menu.Input;
-import com.megalunchbox.game.Menu.Button.Button;
-import com.megalunchbox.game.Menu.Button.LoadGame;
-import com.megalunchbox.game.Menu.Button.NewGame;
-import com.megalunchbox.game.Menu.Button.Settings;
-import com.megalunchbox.game.State.State;
+import com.megalunchbox.game.game.Render;
+import com.megalunchbox.game.input.menu.Input;
+import com.megalunchbox.game.menu.button.Button;
+import com.megalunchbox.game.menu.button.LoadGame;
+import com.megalunchbox.game.menu.button.NewGame;
+import com.megalunchbox.game.menu.button.Settings;
+import com.megalunchbox.game.menu.Menu;
+import com.megalunchbox.game.state.State;
+import com.megalunchbox.game.test.Test;
 
 
 public class Main extends ApplicationAdapter {
@@ -19,28 +21,34 @@ public class Main extends ApplicationAdapter {
 
 	SpriteBatch batch;
 	OrthographicCamera cam;
+	private static Menu menu = new Menu();
 
 	@Override
 	public void create () {
 
+        Create.create();
+
         State.setCurrentState(State.States.Menu);
-        Gdx.input.setInputProcessor(new Input());
+        Gdx.input.setInputProcessor(new Input(menu));
+
+        new Settings();
         new LoadGame();
         new NewGame();
-        new Settings();
 
 		batch = new SpriteBatch();
 		cam = new OrthographicCamera();
 
-		int y =  Gdx.graphics.getHeight() / (Button.getButtons().size() * 3);
+		int y =  Gdx.graphics.getHeight() / (menu.menuButtons.getButtonList().size() * 3);
 		int i = 0;
-		for (Button b : Button.getButtons()) {
+		for (Button b : menu.menuButtons.getButtonList()) {
 			i++;
 			b.setWidth(Gdx.graphics.getWidth()/8);
-			b.setHeight(Gdx.graphics.getHeight() / (Button.getButtons().size() * 3));
+			b.setHeight(Gdx.graphics.getHeight() / (menu.menuButtons.getButtonList().size() * 3));
 			b.setX(Gdx.graphics.getWidth()/2-b.getWidth()/2);
 			b.setY(y*2 + y * i);
 		}
+
+		new Test();
 
 
 	}
@@ -74,16 +82,16 @@ public class Main extends ApplicationAdapter {
     public void handleInput() {
 
 		if (!(Gdx.input.getInputProcessor() instanceof Input) && State.getCurrentState() == State.States.Menu) {
-			Gdx.input.setInputProcessor(new Input());
-		} else if(!(Gdx.input.getInputProcessor() instanceof com.megalunchbox.game.Input.Game.Input) && State.getCurrentState() == State.States.Game) {
-			Gdx.input.setInputProcessor(new com.megalunchbox.game.Input.Game.Input());
+			Gdx.input.setInputProcessor(new Input(menu));
+		} else if(!(Gdx.input.getInputProcessor() instanceof com.megalunchbox.game.input.game.Input) && State.getCurrentState() == State.States.Game) {
+			Gdx.input.setInputProcessor(new com.megalunchbox.game.input.game.Input());
 		}
 
     }
 
     public void renderMenu() {
 		batch.begin();
-        com.megalunchbox.game.Menu.Render.render(batch);
+        com.megalunchbox.game.menu.Render.render(batch);
         batch.end();
     }
 
@@ -93,6 +101,11 @@ public class Main extends ApplicationAdapter {
         batch.end();
     }
 
+	public static Menu getMenu() {
+		return menu;
+	}
 
-
+	public static void setMenuNull() {
+		menu = null;
+	}
 }

@@ -1,4 +1,4 @@
-package com.megalunchbox.game.State;
+package com.megalunchbox.game.state;
 
 import java.util.LinkedList;
 

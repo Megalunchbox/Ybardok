@@ -1,4 +1,4 @@
-package com.megalunchbox.game.Map.Tile;
+package com.megalunchbox.game.map.tile;
 
 import java.io.Serializable;
 

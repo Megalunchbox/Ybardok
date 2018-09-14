@@ -1,4 +1,4 @@
-package com.megalunchbox.game.Game;
+package com.megalunchbox.game.game;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 

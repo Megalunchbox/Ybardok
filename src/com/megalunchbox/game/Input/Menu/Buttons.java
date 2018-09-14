@@ -1,4 +1,4 @@
-package com.megalunchbox.game.Input.Menu;
+package com.megalunchbox.game.input.menu;
 
 public class Buttons {
 

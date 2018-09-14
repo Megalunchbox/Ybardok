@@ -1,4 +1,4 @@
-package com.megalunchbox.game.Input.Game;
+package com.megalunchbox.game.input.game;
 
 import com.badlogic.gdx.InputProcessor;
 

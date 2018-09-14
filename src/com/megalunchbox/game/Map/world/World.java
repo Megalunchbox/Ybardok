@@ -1,7 +1,12 @@
+package com.megalunchbox.game.map.world;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
-import com.megalunchbox.game.Map.Region.Region;
+
+import com.badlogic.gdx.Gdx;
+import com.megalunchbox.game.map.region.Region;
 import java.io.Serializable;
-import java.io.ByteArrayStream;
 import com.badlogic.gdx.files.FileHandle;
 import java.io.ObjectOutputStream;
 
@@ -28,7 +33,7 @@ public class World implements Serializable {
   //the width of the world
   private int worldHeight;
   
-  private final long transient serialVersionUUID = 41L;
+  private transient final long  serialVersionUUID = 41L;
   
   public void loadRegion(FileHandle fileHandle) {
     
@@ -40,6 +45,10 @@ public class World implements Serializable {
   
   public void saveRegion(Region region) {
   }
+
+  public String getDirAsString() {
+      return name + uuid;
+  }
   
   public void save() throws IOException {
     
@@ -47,10 +56,10 @@ public class World implements Serializable {
         ObjectOutputStream o = new ObjectOutputStream(b);
         o.writeObject(this);
         
-        FileHandle file = Gdx.files.local(this.name + uuid + "\" + "world.prop");
+        FileHandle file = Gdx.files.local(this.name + uuid + "\\" + "world.prop");
                                           
         try {
-            file.writeBytes(o, false);
+            file.writeBytes(b.toByteArray(), false);
         }
         catch (Exception e) {
             e.printStackTrace();

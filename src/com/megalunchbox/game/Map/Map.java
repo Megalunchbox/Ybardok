@@ -1,4 +1,4 @@
-package com.megalunchbox.game.Map;
+package com.megalunchbox.game.map;
 
 public class Map {
     

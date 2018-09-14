@@ -1,4 +1,4 @@
-package com.megalunchbox.game.Map.Biome;
+package com.megalunchbox.game.map.biome;
 
 public enum Type {
 

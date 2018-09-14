@@ -1,12 +1,20 @@
-package com.megalunchbox.game.Menu.Button;
+package com.megalunchbox.game.menu.button;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megalunchbox.game.Util.Font;
+import com.megalunchbox.game.Main;
+import com.megalunchbox.game.menu.Menu;
+import com.megalunchbox.game.util.Font;
 
 public class NewGame extends Button {
 
-    Font font = new Font(new BitmapFont());
+    Font font;
+
+    public NewGame(){
+        font = new Font(new BitmapFont(Gdx.files.internal("main.fnt"), false));
+    }
 
     @Override
     public void execute() {
@@ -15,6 +23,13 @@ public class NewGame extends Button {
 
     @Override
     public void render(SpriteBatch batch) {
+
+        if (Main.getMenu().getMenuButtons().getButtonList().get(Button.getSelected()) == this) {
+            font.setColor(Color.YELLOW);
+        } else {
+            font.setColor(Color.WHITE);
+        }
+
 
         font.getFont().draw(batch, "New Game", getX(), getY());
 

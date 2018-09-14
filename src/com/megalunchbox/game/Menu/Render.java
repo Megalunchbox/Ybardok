@@ -1,12 +1,13 @@
-package com.megalunchbox.game.Menu;
+package com.megalunchbox.game.menu;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megalunchbox.game.Menu.Button.Button;
+import com.megalunchbox.game.Main;
+import com.megalunchbox.game.menu.button.Button;
 
 public class Render {
 
     public static void render(SpriteBatch batch) {
-        for (Button a  : Button.getButtons()) {
+        for (Button a  : Main.getMenu().getMenuButtons().getButtonList()) {
             a.render(batch);
         }
 

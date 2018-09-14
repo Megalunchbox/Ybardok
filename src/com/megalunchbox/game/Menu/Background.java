@@ -1,4 +1,4 @@
-package com.megalunchbox.game.Menu;
+package com.megalunchbox.game.menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
