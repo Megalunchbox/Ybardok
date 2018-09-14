@@ -1,4 +1,7 @@
+package com.megalunchbox.game.menu.page;
 
+import com.megalunchbox.game.menu.button.ButtonList;
+import com.megalunchbox.game.menu.textbox.TextBox;
 
 import java.util.ArrayList;
 
