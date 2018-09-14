@@ -1,12 +1,14 @@
 package com.megalunchbox.game.map.tile;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public enum TileSet {
 
     ;
 
-    ArrayList<TileType> tileList;
+    //field hashmap key is the type, integer is the chance multiplier.
+    HashMap<TileType, Integer> tileMap;
 
 
     /**
@@ -15,12 +17,16 @@ public enum TileSet {
      */
 
 
-     TileSet(ArrayList tileList) {
-     this.tileList = tileList;
+     TileSet(HashMap<TileType, Integer> tileSet) {
+     this.tileMap = tileMap;
     }
     
     public ArrayList<TileType> getTypes() {
-        return tileList;
+        return new ArrayList<TileType>(tileMap.keySet());
+    }
+    
+    public HashMap<TileType, Integer> getMap() {
+        return tileMap;
     }
 
 
