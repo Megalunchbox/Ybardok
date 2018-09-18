@@ -10,6 +10,8 @@ import com.megalunchbox.game.map.world.World;
 import com.badlogic.gdx.files.FileHandle;
 
 import java.lang.Math;
+import com.megalunchbox.util.Temperature;
+import com.megalunchbox.util.SimplexNoise;
 
 
 public class Region implements Serializable {
@@ -30,20 +32,26 @@ public class Region implements Serializable {
   
   private static final long serialVersionUID = 23L;
   
-  protected Region(World world, Location location, ArrayList<Chunk> chunks) {
+  Temperature temperature;
+  
+  public Region(World world, Location location, ArrayList<Chunk> chunks) {
+    
     this.world = world;
     this.location = location;
+    this.chunks = chunks;
     
-       if (chunks != null) {
-          this.chunks = chunks;
-       }
     
   }
   
-  //creates a region with no generated chunks
-  public static Region createRegion(Location location, World world) {
-    return new Region(world, location, null);
+  public Region(World world, Location location, SimplexNoise noise) {
+    
+    this.world = world;
+    this.location = location;
+    //TODO: add math  to make colder temperatures at the poles
+    this.temperature = (byte) Math.floor(1.2 * (100 * (noise.noise(location.getX(), location.getY()))));
   }
+  
+  
   
   public FileHandle getRegionPath(Region region) {
     Location location = region.getLocation();
@@ -124,5 +132,10 @@ public class Region implements Serializable {
 
     public Location getLocation() {
         return location;
+    }
+  
+    public static ArrayList<Region> getAllRegions() {
+      //TODO: Load all regions
+      return everyRegion;
     }
 }
