@@ -21,17 +21,10 @@ public class World implements Serializable {
   //the uuid so you can have multiple worlds with the same name and no conflicts
   private long uuid;
   
-  //how many chunks in region
-  private int regionSize = 16;
-  
-  //how many tiles in chunk
-  private int chunkSize = 16;
-  
-  //the height of the world
-  private int worldWidth;
-  
-  //the width of the world
-  private int worldHeight;
+  private int regionSize = 16,
+  chunkSize = 16,
+  worldWidth,
+  worldHeight;
   
   private transient final long  serialVersionUUID = 41L;
   
@@ -64,6 +57,18 @@ public class World implements Serializable {
         catch (Exception e) {
             e.printStackTrace();
         }
+  }
+  
+  public static createRegionLoader(World world) {
+    FileHandle file = Gdx.files.local(this.name + uuid + "\\" + "region");
+  }
+  
+  public String getRegionLoaderPath() {
+    return name + uuid + "\\" + "region";
+  }
+  
+  public void writeToRegionLoader(String text) {
+    FileHandle file = Gdx.files.local(getRegionLoaderPath());
   }
 
 }
