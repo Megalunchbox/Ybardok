@@ -28,19 +28,33 @@ public class World implements Serializable {
   
   private transient final long  serialVersionUUID = 41L;
   
-  public void loadRegion(FileHandle fileHandle) {
-    
+public void Region loadRegion(FileHandle handle) throws IOException, ClassNotFoundException {
+
+      try {
+
+            FileInputStream fis = new FileInputStream(handle.file());
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+          return (Region) ois.readObject();
+
+      } catch (Exception e) {
+            e.printStackTrace();
+      }
+
+      return null;
   }
   
   public void unloadRegion(Region region) {
     
   }
   
-  public void saveRegion(Region region) {
-  }
 
   public String getDirAsString() {
-      return name + uuid;
+      return name + uuid + "\\";
+  }
+  
+  public String getRegionDirAsString() {
+    return name + uuid + "\\" + "region" + "\\"
   }
   
   public void save() throws IOException {
@@ -59,17 +73,14 @@ public class World implements Serializable {
         }
   }
   
-  public static createRegionLoader(World world) {
-    FileHandle file = Gdx.files.local(this.name + uuid + "\\" + "region");
-  }
-  
-  public String getRegionLoaderPath() {
-    return name + uuid + "\\" + "region";
-  }
-  
-  public void writeToRegionLoader(String text) {
-    FileHandle file = Gdx.files.local(getRegionLoaderPath());
-    file.writeString(text, true);
+  public void loadAllRegions() {
+    FileHandle file = Gdx.files.local(getRegionDirAsString());
+    ArrayList<Region> regions;
+    for (FileHandle child : file) {
+      if (file.name.endsWith(".rgf"))
+      region.add(loadRegion(file))
+    }
+    loadedRegions = regions;
   }
 
 }
