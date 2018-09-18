@@ -69,6 +69,7 @@ public class World implements Serializable {
   
   public void writeToRegionLoader(String text) {
     FileHandle file = Gdx.files.local(getRegionLoaderPath());
+    file.writeString(text, true);
   }
 
 }
