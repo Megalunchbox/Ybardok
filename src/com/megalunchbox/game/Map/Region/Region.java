@@ -49,6 +49,7 @@ public class Region implements Serializable {
     this.location = location;
     //TODO: add math  to make colder temperatures at the poles
     this.temperature = (byte) Math.floor(1.2 * (100 * (noise.noise(location.getX(), location.getY()))));
+    world.writeToRegionLoader()
   }
   
   
@@ -68,43 +69,29 @@ public class Region implements Serializable {
     FileHandle file;
 
     if (location.getX() > 0 && location.getY() > 0) {
-      file = Gdx.files.local(world.getDirAsString() + "\\" + "pp" + "\\" +  characters[x] + characters[y] + "\\" + location.getX() + location.getY() + ".rgf");
+      file = Gdx.files.local(world.getRegionDirAsString() + "pp" + "\\" +  characters[x] + characters[y] + "\\" + location.getX() + location.getY() + ".rgf");
       return file;
     } else if (location.getX() <= 0 && location.getY() <= 0) {
-       file = Gdx.files.local(world.getDirAsString() + "\\" + "mm" + "\\" +  characters[x] + characters[y] + "\\" + location.getX() + location.getY() + ".rgf");
+       file = Gdx.files.local(world.getRegionDirAsString() + "mm" + "\\" +  characters[x] + characters[y] + "\\" + location.getX() + location.getY() + ".rgf");
        return file;
     } else if (location.getX() > 0 && location.getY() <= 0) {
-       file = Gdx.files.local(world.getDirAsString() + "\\" + "pm" + "\\" +  characters[x] + characters[y] + "\\" + location.getX() + location.getY() + ".rgf");
+       file = Gdx.files.local(world.getRegionDirAsString() + "pm" + "\\" +  characters[x] + characters[y] + "\\" + location.getX() + location.getY() + ".rgf");
        return file;
     } else if (location.getX() <= 0 && location.getY() > 0) {
-       file = Gdx.files.local(world.getDirAsString() + "\\" + "mp" + "\\" +  characters[x] + characters[y] + "\\" + location.getX() + location.getY() + ".rgf");
+       file = Gdx.files.local(world.getRegionDirAsString() + "mp" + "\\" +  characters[x] + characters[y] + "\\" + location.getX() + location.getY() + ".rgf");
        return file;
     }
     return null;
   }
 
 
-  public static Region loadRegion(FileHandle handle) throws IOException, ClassNotFoundException {
-
-      try {
-
-            FileInputStream fis = new FileInputStream(handle.file());
-            ObjectInputStream ois = new ObjectInputStream(fis);
-
-          return (Region) ois.readObject();
-
-      } catch (Exception e) {
-            e.printStackTrace();
-      }
-
-      return null;
-  }
   
-  public static void saveRegion(Location location) {
+  
+  public void save(Location location) {
     //TODO: Get saving location relative to file path
   }
   
-  public static void delRegion(Region region) {
+  public void del(Region region) {
     //TODO: replace region parameter with FileHandle and delete region
   }
   
@@ -123,19 +110,9 @@ public class Region implements Serializable {
   public long getSerialVersionUID() {
     return serialVersionUID;
   }
-  
-  public static Region generateRegion(Region region) {
-    ArrayList<Chunk> buildingChunks = region.getChunks();
-    //TODO: Chunk generation here for the whole region.
-    return region;
-  }
 
     public Location getLocation() {
         return location;
     }
-  
-    public static ArrayList<Region> getAllRegions() {
-      //TODO: Load all regions
-      return everyRegion;
-    }
+ 
 }
