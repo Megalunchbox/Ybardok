@@ -23,6 +23,7 @@ public class Main extends ApplicationAdapter {
 	SpriteBatch batch;
 	OrthographicCamera cam;
 	static Menu mainMenu = new Menu();
+	static Mode mode;
 
     @Override
 	public void create () {
