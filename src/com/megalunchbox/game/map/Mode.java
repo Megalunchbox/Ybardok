@@ -5,8 +5,7 @@ import java.util.HashMap;
 public enum Mode {
 
     REGIONMODE(0),
-    MENUMODE(1),
-    CHUNKMODE(2)
+    CHUNKMODE(1)
     ;
 
     public static Mode currentMode;
