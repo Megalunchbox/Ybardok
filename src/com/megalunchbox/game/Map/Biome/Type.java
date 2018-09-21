@@ -10,15 +10,23 @@ public enum Type {
 
     private String name;
     private int id;
+    private Biome biome;
 
-    Type(String name, int id) {
+    Type(String name, int id, Biome biome) {
     this.name = name;
     }
 
     public String getName() {
         return name;
     }
-
+    
+    public int getId() {
+        return id;
+    }
+    
+    public Biome getBiome() {
+        return biome;
+    }
 
 
 }
