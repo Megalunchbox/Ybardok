@@ -31,6 +31,8 @@ public class Region implements Serializable {
   
   private Temperature temperature;
   
+  private Biome biome;
+  
   public Region(World world, Location location, ArrayList<Chunk> chunks) {
     
     this.world = world;
@@ -44,8 +46,9 @@ public class Region implements Serializable {
     
     this.world = world;
     this.location = location;
-    //TODO: add math  to make colder temperatures at the poles
+    //TODO: make colder temperatures MORE COMMON at poles
     this.temperature = new Temperature((byte) Math.floor(1.2 * (100 * (SimplexNoise.noise(location.getX(), location.getY())))));
+    //TODO math to determine biomes !!! !!! ! ! !  ! !   
   }
   
   
