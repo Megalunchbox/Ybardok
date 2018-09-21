@@ -15,6 +15,7 @@ import com.megalunchbox.game.state.State;
 import com.megalunchbox.game.test.Test;
 import com.megalunchbox.game.menu.Menu;
 import static com.megalunchbox.game.state.State.States.Menu;
+import com.megalunchbox.game.map.world.World;
 
 
 public class Main extends ApplicationAdapter {
@@ -24,6 +25,7 @@ public class Main extends ApplicationAdapter {
 	OrthographicCamera cam;
 	static Menu mainMenu = new Menu();
 	static Mode mode;
+	World world;
 
     @Override
 	public void create () {
