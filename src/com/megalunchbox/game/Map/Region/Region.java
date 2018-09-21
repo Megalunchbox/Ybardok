@@ -29,7 +29,7 @@ public class Region implements Serializable {
   
   private static final long serialVersionUID = 23L;
   
-  Temperature temperature;
+  private Temperature temperature;
   
   public Region(World world, Location location, ArrayList<Chunk> chunks) {
     
@@ -107,8 +107,13 @@ public class Region implements Serializable {
     return serialVersionUID;
   }
 
-    public Location getLocation() {
+   public Location getLocation() {
         return location;
-    }
+   }
+  
+   public Temperature getTemperature() {
+     return temperature;
+   }
+  
  
 }
