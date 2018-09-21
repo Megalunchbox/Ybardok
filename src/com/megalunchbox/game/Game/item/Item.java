@@ -1,12 +1,12 @@
-package com.megalunchbox.game.game.item.Item.java;
+package com.megalunchbox.game.game.item;
 
 public class Item {
   
   ItemType itemType;
   
   int durability,
-  int maxDurability;
-  
+  maxDurability;
+
   float damage;
   
   String name,
@@ -22,7 +22,7 @@ public class Item {
     this.durability = durability;
   }
   
-  public static enum ItemType {
+  public enum ItemType {
     
     SWORD(1, "sword"),
     AXE(2, "axe"),
@@ -31,7 +31,7 @@ public class Item {
     int id;
     String family;
     
-    public ItemType(int id, String family) {
+    ItemType(int id, String family) {
       this.id = id;
       this.family = family;
     }

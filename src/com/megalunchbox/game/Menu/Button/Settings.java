@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megalunchbox.game.Main;
-import com.megalunchbox.game.menu.Menu;
+import com.megalunchbox.game.Setting;
 import com.megalunchbox.game.util.Font;
 
 public class Settings extends Button{
@@ -25,7 +25,7 @@ public class Settings extends Button{
     @Override
     public void render(SpriteBatch batch) {
 
-        if (Main.getMenu().getMenuButtons().getButtonList().get(Button.getSelected()) == this) {
+        if (Main.getMainMenu().getMenuButtons().getButtonList().get(Button.getSelected()) == this) {
             font.setColor(Color.YELLOW);
         } else {
             font.setColor(Color.WHITE);

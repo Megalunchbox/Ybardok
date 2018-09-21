@@ -11,6 +11,10 @@ public class Menu {
 
     private PageFactory pageFactory;
 
+    public Menu() {
+
+    }
+
     public void onMenuState() {
         Page menu = new Page();
         pageFactory.buildPage(menu.withButtons(menuButtons));

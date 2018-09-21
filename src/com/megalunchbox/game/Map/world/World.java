@@ -1,14 +1,11 @@
 package com.megalunchbox.game.map.world;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.megalunchbox.game.map.region.Region;
-import java.io.Serializable;
 import com.badlogic.gdx.files.FileHandle;
-import java.io.ObjectOutputStream;
 
 public class World implements Serializable {
   
@@ -21,14 +18,18 @@ public class World implements Serializable {
   //the uuid so you can have multiple worlds with the same name and no conflicts
   private long uuid;
   
-  private int regionSize = 16,
+  private byte regionSize = 16,
   chunkSize = 16,
   worldWidth,
   worldHeight;
   
   private transient final long  serialVersionUUID = 41L;
-  
-public void Region loadRegion(FileHandle handle) throws IOException, ClassNotFoundException {
+
+  public World(int chunkSize, int worldWidth, int worldHeight) {
+
+  }
+
+  public Region loadRegion(FileHandle handle) throws IOException, ClassNotFoundException {
 
       try {
 
@@ -54,7 +55,7 @@ public void Region loadRegion(FileHandle handle) throws IOException, ClassNotFou
   }
   
   public String getRegionDirAsString() {
-    return name + uuid + "\\" + "region" + "\\"
+    return name + uuid + "\\" + "region" + "\\";
   }
   
   public void save() throws IOException {
@@ -73,14 +74,57 @@ public void Region loadRegion(FileHandle handle) throws IOException, ClassNotFou
         }
   }
   
-  public void loadAllRegions() {
+  public void loadAllRegions() throws IOException, ClassNotFoundException{
     FileHandle file = Gdx.files.local(getRegionDirAsString());
-    ArrayList<Region> regions;
-    for (FileHandle child : file) {
-      if (file.name.endsWith(".rgf"))
-      region.add(loadRegion(file))
+    ArrayList<Region> regions = new ArrayList<Region>();
+    for (FileHandle child : file.list()) {
+      if (file.name().endsWith(".rgf"))
+      regions.add(loadRegion(file));
     }
     loadedRegions = regions;
   }
+
+    public ArrayList<Region> getLoadedRegions() {
+        return loadedRegions;
+    }
+
+    public int getChunkSize() {
+        return chunkSize;
+    }
+
+    public int getWorldHeight() {
+        return worldHeight;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getRegionSize() {
+        return regionSize;
+    }
+
+    public int getWorldWidth() {
+        return worldWidth;
+    }
+
+    public long getUuid() {
+        return uuid;
+    }
+
+    public void setWorldHeight(byte worldHeight) {
+        this.worldHeight = worldHeight;
+    }
+
+    public void setWorldWidth(byte worldWidth) {
+        this.worldWidth = worldWidth;
+    }
+
+    public void saveAllRegions() {
+      for (Region region : loadedRegions) {
+          region.save(region.getLocation());
+      }
+    }
+
 
 }

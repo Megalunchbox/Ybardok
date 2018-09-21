@@ -11,9 +11,10 @@ import com.megalunchbox.game.menu.button.Button;
 import com.megalunchbox.game.menu.button.LoadGame;
 import com.megalunchbox.game.menu.button.NewGame;
 import com.megalunchbox.game.menu.button.Settings;
-import com.megalunchbox.game.menu.Menu;
 import com.megalunchbox.game.state.State;
 import com.megalunchbox.game.test.Test;
+import com.megalunchbox.game.menu.Menu;
+import static com.megalunchbox.game.state.State.States.Menu;
 
 
 public class Main extends ApplicationAdapter {
@@ -21,34 +22,33 @@ public class Main extends ApplicationAdapter {
 
 	SpriteBatch batch;
 	OrthographicCamera cam;
-	private static Menu menu = new Menu();
+	static Menu mainMenu = new Menu();
 
-	@Override
+    @Override
 	public void create () {
 
         Create.create();
 
-        State.setCurrentState(State.States.Menu);
-        Gdx.input.setInputProcessor(new Input(menu));
+        State.setCurrentState(Menu);
+        Gdx.input.setInputProcessor(new Input(mainMenu));
 
-        new Settings();
-        new LoadGame();
-        new NewGame();
+        mainMenu.getMenuButtons().addButton(new NewGame());
+        mainMenu.getMenuButtons().addButton(new LoadGame());
+        mainMenu.getMenuButtons().addButton(new Settings());
 
 		batch = new SpriteBatch();
 		cam = new OrthographicCamera();
 
-		int y =  Gdx.graphics.getHeight() / (menu.menuButtons.getButtonList().size() * 3);
+		int y =  Gdx.graphics.getHeight() / (mainMenu.menuButtons.getButtonList().size() * 3);
 		int i = 0;
-		for (Button b : menu.menuButtons.getButtonList()) {
+		for (Button b : mainMenu.getMenuButtons().getButtonList()) {
 			i++;
 			b.setWidth(Gdx.graphics.getWidth()/8);
-			b.setHeight(Gdx.graphics.getHeight() / (menu.menuButtons.getButtonList().size() * 3));
+			b.setHeight(Gdx.graphics.getHeight() / (mainMenu.menuButtons.getButtonList().size() * 3));
 			b.setX(Gdx.graphics.getWidth()/2-b.getWidth()/2);
 			b.setY(y*2 + y * i);
 		}
 
-		new Test();
 
 
 	}
@@ -62,7 +62,7 @@ public class Main extends ApplicationAdapter {
 	    handleInput();
 	    update();
 
-	    if (State.getCurrentState() == State.States.Menu) {
+	    if (State.getCurrentState() == Menu) {
 	        renderMenu();
         } else {
 	        renderGame();
@@ -81,8 +81,8 @@ public class Main extends ApplicationAdapter {
 
     public void handleInput() {
 
-		if (!(Gdx.input.getInputProcessor() instanceof Input) && State.getCurrentState() == State.States.Menu) {
-			Gdx.input.setInputProcessor(new Input(menu));
+		if (!(Gdx.input.getInputProcessor() instanceof Input) && State.getCurrentState() == Menu) {
+			Gdx.input.setInputProcessor(new Input(mainMenu));
 		} else if(!(Gdx.input.getInputProcessor() instanceof com.megalunchbox.game.input.game.Input) && State.getCurrentState() == State.States.Game) {
 			Gdx.input.setInputProcessor(new com.megalunchbox.game.input.game.Input());
 		}
@@ -101,11 +101,7 @@ public class Main extends ApplicationAdapter {
         batch.end();
     }
 
-	public static Menu getMenu() {
-		return menu;
-	}
-
-	public static void setMenuNull() {
-		menu = null;
-	}
+    public static com.megalunchbox.game.menu.Menu getMainMenu() {
+        return mainMenu;
+    }
 }

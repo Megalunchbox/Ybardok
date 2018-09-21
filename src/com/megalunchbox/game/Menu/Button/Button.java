@@ -1,7 +1,6 @@
 package com.megalunchbox.game.menu.button;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megalunchbox.game.menu.Menu;
 
 public abstract class Button {
 

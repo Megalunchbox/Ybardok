@@ -1,20 +1,20 @@
 package com.megalunchbox.game.map.region;
 
-public enum Temperature {
+public class Temperature {
   
-  HIGHEST(127),
-  HOT(80),
-  MEDIUM(0),
-  COLD(-80),
-  LOWEST(-127),
-  ;
+  /*HIGHEST((byte)127),
+  HOT((byte)80),
+  MEDIUM((byte)0),
+  COLD((byte)-80),
+  LOWEST((byte)-128),
+  ; */
   
   private byte temperature;
   private String description;
   
-  public Temperature(byte temperature) {
+  Temperature(byte temperature) {
     this.temperature = temperature;
-    if (temperature >= -30 || temperature <= 30) {
+    if (temperature >= -30 && temperature <= 30) {
       this.description = "Relatively good temperature";
     } else if (temperature <= -30) {
       this.description = "Cold temperature";
@@ -22,7 +22,4 @@ public enum Temperature {
       this.description = "Hot temperature";
     }
   }
-  
-  
-
 }

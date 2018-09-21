@@ -1,8 +1,8 @@
 package com.megalunchbox.game.input.menu;
 
 import com.badlogic.gdx.InputProcessor;
-import com.megalunchbox.game.menu.button.Button;
 import com.megalunchbox.game.menu.Menu;
+import com.megalunchbox.game.menu.button.Button;
 import com.megalunchbox.game.util.GameMath;
 
 import java.lang.reflect.InvocationTargetException;

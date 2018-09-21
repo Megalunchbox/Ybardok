@@ -1,6 +1,6 @@
 package com.megalunchbox.game.game.entity;
 
-import com.megalunchbox.game.Util.Location;
+import com.megalunchbox.game.util.Location;
 import java.util.HashMap;
 
 public class Entity {
@@ -8,6 +8,7 @@ public class Entity {
   private float maxHealth,
   health,
   baseArmor,
+  maxMana,
   mana;
   
   private String name;
@@ -17,21 +18,17 @@ public class Entity {
   
   private Location location;
 
-  public Entity(float maxHealth, float health, float baseArmor, float mana, String name, Location location) {
+  public Entity(float maxHealth, float health, float baseArmor, float maxMana, String name, Location location) {
     this.maxHealth = maxHealth;
     this.health = health;
     this.baseArmor = baseArmor;
-    this.mana = mana;
+    this.maxMana = mana;
     this.name = name;
     this.location = location;
   }
   
-  public Entity(float maxHealth, float mana, String name) {
-    this(maxHealth,maxHealth,null,mana,name,null);
-  }
-  
-  public Entity(float maxHealth, float mana) {
-    this(maxHealth,mana,null);
+  public Entity(float maxHealth, float maxMana, float baseArmor, String name) {
+    this(maxHealth, maxHealth, baseArmor,maxMana, name, null);
   }
   
   public void setLocation(Location location) {
@@ -58,21 +55,39 @@ public class Entity {
     health -= d;
   }
   
-  public float getMana() {
-    return mana;
+  public float getMaxMana() {
+    return maxMana;
   }
   
   public float getBaseArmor() {
     return baseArmor;
   }
   
-  public float setBaseArmor(float b) {
+  public void setBaseArmor(float b) {
     baseArmor = b;
   }
-  
-  public HashMap<String, Float> getCachedModifiers() {
-    return cachedModifiers;
-  }
-  
 
+  public String getName() {
+    return name;
+  }
+
+  public float getHealth() {
+    return health;
+  }
+
+  public float getMaxHealth() {
+    return maxHealth;
+  }
+
+  public float getMana() {
+    return mana;
+  }
+
+  public HashMap<String, Float> getCachedStats() {
+    return cachedStats;
+  }
+
+  public void setMana(float mana) {
+    this.mana = mana;
+  }
 }

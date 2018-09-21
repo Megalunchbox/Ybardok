@@ -1,4 +1,4 @@
-package com.megalunchbox.game.Util;
+package com.megalunchbox.game.util;
 
 import java.util.Random;
  

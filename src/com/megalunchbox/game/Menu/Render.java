@@ -7,7 +7,7 @@ import com.megalunchbox.game.menu.button.Button;
 public class Render {
 
     public static void render(SpriteBatch batch) {
-        for (Button a  : Main.getMenu().getMenuButtons().getButtonList()) {
+        for (Button a  : Main.getMainMenu().getMenuButtons().getButtonList()) {
             a.render(batch);
         }
 
