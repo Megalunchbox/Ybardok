@@ -21,8 +21,49 @@ public class Item {
     this.maxDurability = maxDurability;
     this.durability = durability;
   }
-  
-  public enum ItemType {
+
+
+    public String getName() {
+        return name;
+    }
+
+    public float getDamage() {
+        return damage;
+    }
+
+    public int getDurability() {
+        return durability;
+    }
+
+    public int getMaxDurability() {
+        return maxDurability;
+    }
+
+    public ItemType getItemType() {
+        return itemType;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDurability(int durability) {
+        this.durability = durability;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDamage(float damage) {
+        this.damage = damage;
+    }
+
+    public enum ItemType {
     
     SWORD(1, "sword"),
     AXE(2, "axe"),
@@ -43,8 +84,6 @@ public class Item {
     public String getFamily() {
       return family;
     }
-    
-    
   }
 
 }
