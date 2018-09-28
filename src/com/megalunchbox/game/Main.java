@@ -18,7 +18,7 @@ import static com.megalunchbox.game.state.State.States.Menu;
 import com.megalunchbox.game.map.world.World;
 
 
-public class Main extends ApplicationAdapter {
+public class Main extends ApplicationAdapter implements Observer {
 
 
 	SpriteBatch batch;
@@ -80,7 +80,16 @@ public class Main extends ApplicationAdapter {
 	}
 
 	public void update() {
-    }
+    	}
+	
+	public void update(Object o, Object arg) {
+		if (o instanceof Mode) {
+			// code updating crap
+		} 
+		if (o instanceof Setting) { 
+			//update according to changes
+		}
+	}
 
     public void handleInput() {
 
@@ -102,9 +111,5 @@ public class Main extends ApplicationAdapter {
 		batch.begin();
         Render.render(batch);
         batch.end();
-    }
-
-    public static com.megalunchbox.game.menu.Menu getMainMenu() {
-        return mainMenu;
     }
 }
