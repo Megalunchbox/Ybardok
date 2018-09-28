@@ -1,8 +1,9 @@
 package com.megalunchbox.game.state;
 
 import java.util.LinkedList;
+import java.util.Observable;
 
-public class State {
+public class State extends Observable {
 
     private static LinkedList<States> states = new LinkedList<States>();
 
@@ -48,5 +49,4 @@ public class State {
         }
 
     }
-
 }
