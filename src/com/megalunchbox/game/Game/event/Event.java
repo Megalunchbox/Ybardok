@@ -5,7 +5,7 @@ abstract class Event {
   public static HashMap<Integer, Event> eventMap;
   
   int id;
-  bool cancelled;
+  boolean cancelled;
   
   public abstract void onEvent();
   
@@ -13,7 +13,7 @@ abstract class Event {
     return id;
   }
   
-  public bool cancelled() {
+  public boolean cancelled() {
     return cancelled;
   }
   
