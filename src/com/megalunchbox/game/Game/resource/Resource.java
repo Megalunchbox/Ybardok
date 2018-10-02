@@ -15,8 +15,13 @@ public class Resource {
     IRON(2, "iron"),
     ;
     
+    @NotNull
     private String name;
+    
+    @NotNull
     private int id;
+    
+    @NotNull
     private Texture texture;
     
     public Type(int id, String name) {
@@ -42,22 +47,33 @@ public class Resource {
   }
   
   public static class ResourceIncome {
-    private static ArrayList<ResourceIncome> incomeArrayList = new ArrayList<ResourceIncome>();
+    @NotNull
+    private static HashMap<Resource, ResourceIncome> incomeArrayList = new ArrayList<ResourceIncome>();
+    @NotNull
     private int income;
+    @NotNull
     private Resource resource;
     
     public ResourceIncome(Resource resource, int income) {
       this.resource = resource;
       this.income = income;
-      incomeArrayList.add(this);
+      incomeArrayList.put(resource, this);
     }
     
-    public ArrayList<ResourceIncome> getIncomeArray() {
+    public HashMap<Resource, ResourceIncome> getIncomeArray() {
       return incomeArrayList;
     }
     
     public int income() {
       return income;
+    }
+    
+    public void setIncome(int income) {
+      this.income = income;
+    }
+    
+    public Resource resource() {
+      return resource;
     }
     
   }
