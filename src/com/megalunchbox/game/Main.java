@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megalunchbox.game.game.Render;
 import com.megalunchbox.game.input.menu.Input;
+import com.megalunchbox.game.map.Mode;
 import com.megalunchbox.game.menu.button.Button;
 import com.megalunchbox.game.menu.button.LoadGame;
 import com.megalunchbox.game.menu.button.NewGame;
@@ -16,6 +17,9 @@ import com.megalunchbox.game.test.Test;
 import com.megalunchbox.game.menu.Menu;
 import static com.megalunchbox.game.state.State.States.Menu;
 import com.megalunchbox.game.map.world.World;
+
+import java.util.Observable;
+import java.util.Observer;
 
 
 public class Main extends ApplicationAdapter implements Observer {
@@ -109,7 +113,12 @@ public class Main extends ApplicationAdapter implements Observer {
 
     public void renderGame() {
 		batch.begin();
-        Render.render(batch);
+        Render.render(batch, cam, mode, world);
         batch.end();
     }
+
+	@Override
+	public void update(Observable o, Object arg) {
+
+	}
 }

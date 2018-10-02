@@ -4,6 +4,12 @@ import java.io.*;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megalunchbox.game.map.biome.Biome;
+import com.megalunchbox.game.map.chunk.Chunk;
 import com.megalunchbox.game.util.Location;
 import com.megalunchbox.game.map.world.World;
 import com.badlogic.gdx.files.FileHandle;
@@ -28,27 +34,28 @@ public class Region implements Serializable {
   //serialversionuid
   
   private static final long serialVersionUID = 23L;
+
+  Color color;
+
+  Texture texture;
   
   private Temperature temperature;
   
   private Biome biome;
-  
-  public Region(World world, Location location, ArrayList<Chunk> chunks) {
-    
-    this.world = world;
-    this.location = location;
-    this.chunks = chunks;
-    
-    
-  }
-  
+
   public Region(World world, Location location) {
     
     this.world = world;
     this.location = location;
     //TODO: make colder temperatures MORE COMMON at poles
     this.temperature = new Temperature((byte) Math.floor(1.2 * (100 * (SimplexNoise.noise(location.getX(), location.getY())))));
-    //TODO math to determine biomes !!! !!! ! ! !  ! !   
+    this.color = new Color(temperature.getBytes() * 3);
+    //TODO math to determine biomes !!! !!! ! ! !  ! !
+      Pixmap pixmap = new Pixmap(32, 32, Pixmap.Format.RGBA8888);
+      pixmap.setColor(color);
+      pixmap.fillRectangle(0, 0, 32, 32);
+      texture = new Texture(pixmap);
+      pixmap.dispose();
   }
   
   
@@ -117,6 +124,14 @@ public class Region implements Serializable {
    public Temperature getTemperature() {
      return temperature;
    }
+
+   public void render(SpriteBatch batch) {
+      batch.draw(texture, location.getX(), location.getY());
+   }
+
+    private void createTexture(int width, int height, Color color) {
+
+    }
   
  
 }

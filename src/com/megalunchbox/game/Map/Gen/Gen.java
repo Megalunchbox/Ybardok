@@ -1,6 +1,6 @@
 package com.megalunchbox.game.map.gen;
 
-import com.megalunchbox.game.map.tile.TileSet;
+import com.megalunchbox.game.map.tile.Tile;
 import com.megalunchbox.game.map.world.World;
 
 public class Gen {
@@ -12,9 +12,9 @@ public class Gen {
   int yMin;
   
   //the tileSet the map will use to gen
-  TileSet tileSet;
+  Tile.TileSet tileSet;
   
-  public Gen(TileSet tileSet, World world) {
+  public Gen(Tile.TileSet tileSet, World world) {
   }
 
 }

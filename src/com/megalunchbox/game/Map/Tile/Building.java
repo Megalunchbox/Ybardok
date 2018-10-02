@@ -1,8 +1,11 @@
 package com.megalunchbox.game.map.tile;
 
-public abstract class Building extends TileContent {
+import com.megalunchbox.game.game.Population;
 
-  Population population; //TODO: add population
+    public abstract class Building extends Tile.TileContent {
+
+
+  Population population;
   
   
-}
+    }

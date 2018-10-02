@@ -22,4 +22,8 @@ public class Temperature {
       this.description = "Hot temperature";
     }
   }
+
+  public byte getBytes() {
+    return temperature;
+  }
 }

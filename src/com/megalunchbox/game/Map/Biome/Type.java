@@ -2,10 +2,10 @@ package com.megalunchbox.game.map.biome;
 
 public enum Type {
 
-    GRASSLAND("Grassland", 0),
-    DESERT("Desert", 1),
-    RAINFOREST("Rainforest", 2),
-    FOREST("Forest", 3)
+    GRASSLAND("Grassland", 0, new Biome(null)),
+    DESERT("Desert", 1, new Biome(null)),
+    RAINFOREST("Rainforest", 2, new Biome(null)),
+    FOREST("Forest", 3, new Biome(null))
     ;
 
     private String name;

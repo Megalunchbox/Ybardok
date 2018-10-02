@@ -1,4 +1,4 @@
-package com.megalunchbox.game.map.region;
+package com.megalunchbox.game.map.chunk;
 
 import java.util.ArrayList;
 import com.megalunchbox.game.map.biome.Biome;

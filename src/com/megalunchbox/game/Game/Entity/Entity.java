@@ -17,18 +17,16 @@ public class Entity {
   //private HashMap<> inventory; TODO: add this after inventory is created.
   
   private Location location;
+  private EClass eClass;
 
-  public Entity(float maxHealth, float health, float baseArmor, float maxMana, String name, Location location) {
+  public Entity(float maxHealth, float health, float baseArmor, float maxMana, EClass eClass, String name, Location location) {
     this.maxHealth = maxHealth;
     this.health = health;
     this.baseArmor = baseArmor;
     this.maxMana = mana;
     this.name = name;
     this.location = location;
-  }
-  
-  public Entity(float maxHealth, float maxMana, float baseArmor, String name) {
-    this(maxHealth, maxHealth, baseArmor,maxMana, name, null);
+    this.eClass = eClass;
   }
   
   public void setLocation(Location location) {

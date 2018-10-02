@@ -1,5 +1,7 @@
 package com.megalunchbox.game.map.chunk;
 
+import com.badlogic.gdx.graphics.Texture;
+
 public class ChunkContent {
   
     Texture texture;
