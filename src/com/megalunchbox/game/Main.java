@@ -8,50 +8,49 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megalunchbox.game.game.Render;
 import com.megalunchbox.game.input.menu.Input;
 import com.megalunchbox.game.map.Mode;
+import com.megalunchbox.game.map.gen.Gen;
 import com.megalunchbox.game.menu.button.Button;
 import com.megalunchbox.game.menu.button.LoadGame;
 import com.megalunchbox.game.menu.button.NewGame;
 import com.megalunchbox.game.menu.button.Settings;
 import com.megalunchbox.game.state.State;
-import com.megalunchbox.game.test.Test;
-import com.megalunchbox.game.menu.Menu;
+
 import static com.megalunchbox.game.state.State.States.Menu;
 import com.megalunchbox.game.map.world.World;
 
-import java.util.Observable;
-import java.util.Observer;
 
-
-public class Main extends ApplicationAdapter implements Observer {
+public class Main extends ApplicationAdapter {
 
 
 	SpriteBatch batch;
 	OrthographicCamera cam;
-	static Menu mainMenu = new Menu();
 	static Mode mode;
 	World world;
 
     @Override
 	public void create () {
 
+        world = new World(20, 20, "test");
+        Gen.genRegions(world);
+
         Create.create();
 
         State.setCurrentState(Menu);
-        Gdx.input.setInputProcessor(new Input(mainMenu));
+        Gdx.input.setInputProcessor(new Input(Setting.getInstance().getMainMenu()));
 
-        mainMenu.getMenuButtons().addButton(new NewGame());
-        mainMenu.getMenuButtons().addButton(new LoadGame());
-        mainMenu.getMenuButtons().addButton(new Settings());
+        Setting.getInstance().getMainMenu().getMenuButtons().addButton(new NewGame());
+        Setting.getInstance().getMainMenu().getMenuButtons().addButton(new LoadGame());
+		Setting.getInstance().getMainMenu().getMenuButtons().addButton(new Settings());
 
 		batch = new SpriteBatch();
 		cam = new OrthographicCamera();
 
-		int y =  Gdx.graphics.getHeight() / (mainMenu.menuButtons.getButtonList().size() * 3);
+		int y =  Gdx.graphics.getHeight() / (Setting.getInstance().getMainMenu().getMenuButtons().getButtonList().size() * 3);
 		int i = 0;
-		for (Button b : mainMenu.getMenuButtons().getButtonList()) {
+		for (Button b : Setting.getInstance().getMainMenu().getMenuButtons().getButtonList()) {
 			i++;
 			b.setWidth(Gdx.graphics.getWidth()/8);
-			b.setHeight(Gdx.graphics.getHeight() / (mainMenu.menuButtons.getButtonList().size() * 3));
+			b.setHeight(Gdx.graphics.getHeight() / (Setting.getInstance().getMainMenu().getMenuButtons().getButtonList().size() * 3));
 			b.setX(Gdx.graphics.getWidth()/2-b.getWidth()/2);
 			b.setY(y*2 + y * i);
 		}
@@ -85,20 +84,12 @@ public class Main extends ApplicationAdapter implements Observer {
 
 	public void update() {
     	}
-	
-	public void update(Object o, Object arg) {
-		if (o instanceof Mode) {
-			// code updating crap
-		} 
-		if (o instanceof Setting) { 
-			//update according to changes
-		}
-	}
+
 
     public void handleInput() {
 
 		if (!(Gdx.input.getInputProcessor() instanceof Input) && State.getCurrentState() == Menu) {
-			Gdx.input.setInputProcessor(new Input(mainMenu));
+			Gdx.input.setInputProcessor(new Input(Setting.getInstance().getMainMenu()));
 		} else if(!(Gdx.input.getInputProcessor() instanceof com.megalunchbox.game.input.game.Input) && State.getCurrentState() == State.States.Game) {
 			Gdx.input.setInputProcessor(new com.megalunchbox.game.input.game.Input());
 		}
@@ -117,8 +108,6 @@ public class Main extends ApplicationAdapter implements Observer {
         batch.end();
     }
 
-	@Override
-	public void update(Observable o, Object arg) {
 
-	}
 }
+

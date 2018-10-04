@@ -1,6 +1,8 @@
-com.megalunchbo.game.map.tile;
+package com.megalunchbox.game.map.tile;
 
-public class Nature extends TileContent{
+import com.megalunchbox.game.map.tile.Tile;
+
+public class Nature extends Tile.TileContent {
 
 
 

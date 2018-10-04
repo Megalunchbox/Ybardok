@@ -3,7 +3,7 @@ package com.megalunchbox.game.state;
 import java.util.LinkedList;
 import java.util.Observable;
 
-public class State extends Observable {
+public class State {
 
     private static LinkedList<States> states = new LinkedList<States>();
 
@@ -25,6 +25,7 @@ public class State extends Observable {
 
     public static void setCurrentState(States currentState) {
         State.currentState = currentState;
+
     }
 
     public enum States {

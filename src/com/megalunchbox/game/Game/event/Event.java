@@ -1,5 +1,7 @@
 package com.megalunchbox.game.game;
 
+import java.util.HashMap;
+
 abstract class Event {
 
   public static HashMap<Integer, Event> eventMap;
@@ -9,7 +11,7 @@ abstract class Event {
   
   public abstract void onEvent();
   
-  public void id() {
+  public int id() {
     return id;
   }
   

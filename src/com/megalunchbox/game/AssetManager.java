@@ -1,19 +1,24 @@
 package com.megalunchbox.game;
 
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Texture;
+
+import java.util.HashMap;
+
 public class AssetManager {
 
-  HashMap<String, AssetLoader.Asset> assets;
+  HashMap<String, Texture> assets;
   
-  public AssetLoader() {
-    assets = new HashMap<String, Texture texture>();
+  public AssetManager() {
+    assets = new HashMap<String, Texture>();
   }
   
-  public AssetLoader(HashMap<String, Texture texture> assets) {
+  public AssetManager(HashMap<String, Texture> assets) {
     this.assets = assets;
   }
   
   public void load(String name, FileHandle file) {
-    assets.put(name, file);
+    assets.put(name, new Texture(file));
   }
   
   public Texture get(String name) {

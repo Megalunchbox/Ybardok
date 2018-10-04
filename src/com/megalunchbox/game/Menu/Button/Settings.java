@@ -25,7 +25,7 @@ public class Settings extends Button{
     @Override
     public void render(SpriteBatch batch) {
 
-        if (Main.getMainMenu().getMenuButtons().getButtonList().get(Button.getSelected()) == this) {
+        if (Setting.getInstance().getMainMenu().getMenuButtons().getButtonList().get(Button.getSelected()) == this) {
             font.setColor(Color.YELLOW);
         } else {
             font.setColor(Color.WHITE);

@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megalunchbox.game.Main;
 import com.megalunchbox.game.Setting;
+import com.megalunchbox.game.map.Mode;
+import com.megalunchbox.game.state.State;
 import com.megalunchbox.game.util.Font;
 
 public class NewGame extends Button {
@@ -18,13 +20,16 @@ public class NewGame extends Button {
 
     @Override
     public void execute() {
-        System.out.println("Clicked");
+        //TODO: world creation settings, etc
+
+        State.setCurrentState(State.States.Game);
+        Mode.setCurrentMode(Mode.REGION_MODE);
     }
 
     @Override
     public void render(SpriteBatch batch) {
 
-        if (Main.getMainMenu().getMenuButtons().getButtonList().get(Button.getSelected()) == this) {
+        if (Setting.getInstance().getMainMenu().getMenuButtons().getButtonList().get(Button.getSelected()) == this) {
             font.setColor(Color.YELLOW);
         } else {
             font.setColor(Color.WHITE);

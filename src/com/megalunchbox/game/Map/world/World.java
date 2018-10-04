@@ -17,15 +17,18 @@ public class World implements Serializable {
   
   //the uuid so you can have multiple worlds with the same name and no conflicts
   private long uuid;
-  
-  private byte regionSize = 16,
-  chunkSize = 16,
+
+  int
   worldWidth,
   worldHeight;
   
   private transient final long  serialVersionUUID = 41L;
 
-  public World(int chunkSize, int worldWidth, int worldHeight) {
+  public World(int width, int height, String name) {
+        worldWidth = width;
+        worldHeight = height;
+        this.name = name;
+
 
   }
 
@@ -88,9 +91,6 @@ public class World implements Serializable {
         return loadedRegions;
     }
 
-    public int getChunkSize() {
-        return chunkSize;
-    }
 
     public int getWorldHeight() {
         return worldHeight;
@@ -98,10 +98,6 @@ public class World implements Serializable {
 
     public String getName() {
         return name;
-    }
-
-    public int getRegionSize() {
-        return regionSize;
     }
 
     public int getWorldWidth() {
@@ -124,6 +120,10 @@ public class World implements Serializable {
       for (Region region : loadedRegions) {
           region.save(region.getLocation());
       }
+    }
+
+    public void addRegion(Region region) {
+      loadedRegions.add(region);
     }
 
 

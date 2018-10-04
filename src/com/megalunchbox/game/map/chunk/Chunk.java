@@ -1,6 +1,8 @@
 package com.megalunchbox.game.map.chunk;
 
 import java.util.ArrayList;
+
+import com.badlogic.gdx.graphics.Texture;
 import com.megalunchbox.game.map.biome.Biome;
 import com.megalunchbox.game.map.tile.Tile;
 
@@ -25,4 +27,18 @@ public class Chunk {
     
   }
 
+  public static class Content {
+
+      Texture texture;
+      Chunk owner;
+
+      public Texture texture() {
+        return texture;
+      }
+
+      public Chunk owner() {
+        return owner;
+      }
+
+  }
 }

@@ -1,5 +1,11 @@
 package com.megalunchbox.game.game.resource;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.sun.istack.internal.NotNull;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Resource {
 
   @NotNull
@@ -24,7 +30,7 @@ public class Resource {
     @NotNull
     private Texture texture;
     
-    public Type(int id, String name) {
+    Type(int id, String name) {
       this.id = id;
       this.name = name;
     }
@@ -34,13 +40,14 @@ public class Resource {
     }
     
     public Texture texture() {
-      this.texture = texture;
+      return texture;
     }
     
     public int id() {
       return id;
     }
-    public String name() {
+
+    public String getName() {
       return name;
     }
     
@@ -48,7 +55,7 @@ public class Resource {
   
   public static class ResourceIncome {
     @NotNull
-    private static HashMap<Resource, ResourceIncome> incomeArrayList = new ArrayList<ResourceIncome>();
+    private static HashMap<Resource, ResourceIncome> incomeArrayList = new HashMap<Resource, ResourceIncome>();
     @NotNull
     private int income;
     @NotNull

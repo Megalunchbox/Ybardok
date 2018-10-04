@@ -8,13 +8,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megalunchbox.game.Setting;
 import com.megalunchbox.game.map.biome.Biome;
 import com.megalunchbox.game.map.chunk.Chunk;
 import com.megalunchbox.game.util.Location;
 import com.megalunchbox.game.map.world.World;
 import com.badlogic.gdx.files.FileHandle;
 import java.lang.Math;
-import com.megalunchbox.game.util.SimplexNoise;
 
 
 public class Region implements Serializable {
@@ -44,18 +44,27 @@ public class Region implements Serializable {
   private Biome biome;
 
   public Region(World world, Location location) {
-    
-    this.world = world;
-    this.location = location;
+
+      this.world = world;
+      this.location = location;
     //TODO: make colder temperatures MORE COMMON at poles
-    this.temperature = new Temperature((byte) Math.floor(1.2 * (100 * (SimplexNoise.noise(location.getX(), location.getY())))));
-    this.color = new Color(temperature.getBytes() * 3);
-    //TODO math to determine biomes !!! !!! ! ! !  ! !
+      this.temperature = new Temperature((byte) Math.floor((100 * (Setting.getInstance().getNoise().noise(location.getX(), location.getY())))));
+
+      if (temperature.getBytes() < 60) {
+        color = Color.YELLOW;
+      } else if (temperature.getBytes() > -60) {
+          color = Color.WHITE;
+      } else if (temperature.getBytes() > 60 && temperature.getBytes() < -60) {
+          color = Color.GREEN;
+      }
+
       Pixmap pixmap = new Pixmap(32, 32, Pixmap.Format.RGBA8888);
       pixmap.setColor(color);
       pixmap.fillRectangle(0, 0, 32, 32);
       texture = new Texture(pixmap);
       pixmap.dispose();
+
+      //TODO: BIOMES!
   }
   
   
@@ -126,7 +135,7 @@ public class Region implements Serializable {
    }
 
    public void render(SpriteBatch batch) {
-      batch.draw(texture, location.getX(), location.getY());
+      batch.draw(texture, location.getX() * 32, location.getY() * 32);
    }
 
     private void createTexture(int width, int height, Color color) {
